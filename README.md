@@ -1,4 +1,4 @@
-# Encrypt you backups
+# Encrypt your backups
 
 Written in BASH, this script allows you to compress, encrypt & transfer your UNIX based system folders.
 
