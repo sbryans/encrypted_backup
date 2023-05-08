@@ -7,6 +7,5 @@ Written in BASH, this script allows you to compress, encrypt & transfer your UNI
 ## How to run:
 
 1. Navigate to the working directory where the script is located.
-``` 
-sh backup.sh
-```
+2. ```chmod +x backup.sh```
+3. ```sh backup.sh```
