@@ -22,8 +22,7 @@ backup_size=`du -s -B1 $path_to_dir/_dir | awk -F'/' '{print $1}'`
 backup_single_tarball(){
 	echo "backup_single_tarball()"
 	tar cvf $tar_dir _dir/
-	[ $? -eq 0 ] && echo "<10GB Tar Passed" || echo "<10GB Tar Failed"
-	trap "backup_single_encrypt" EXIT
+	[ $? -eq 0 ] && echo "<10GB Tar Passed"; backup_single_encrypt || echo "<10GB Tar Failed"
 }
 backup_single_encrypt(){
 	echo "backup_single_encrypt()"
@@ -53,8 +52,7 @@ backup_single_send(){
 backup_multiple_tarball(){
 	echo "backup_multiple_tarball()"
 	tar cvzf - $path_to_dir/_dir | split -b 10000m - $tar_dir.
-	[ $? -eq 0 ] && echo "Created multi tarball." || echo "Failed to create multi tarball."
-	trap "backup_multiple_encrypt" EXIT
+	[ $? -eq 0 ] && echo "Created multi tarball."; backup_multiple_encrypt || echo "Failed to create multi tarball."
 }
 backup_multiple_encrypt(){
 	for file in $(ls | grep ".gz"); do gpg -c --batch --passphrase $pass $file && rm -f $file; done
